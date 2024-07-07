@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0o31tpv61vdh"]
+
+[ext_resource type="Script" path="res://Scripts/tree.gd" id="1_6gunx"]
+[ext_resource type="Texture2D" uid="uid://ur5c2vw3kpj5" path="res://assets/survivalgame-appletree.png" id="1_cd5ki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t84b"]
+atlas = ExtResource("1_cd5ki")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ipe1"]
+atlas = ExtResource("1_cd5ki")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j3hp8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0t84b")
+}],
+"loop": false,
+"name": &"empty",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ipe1")
+}],
+"loop": false,
+"name": &"full",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d5dea"]
+radius = 31.0483
+
+[node name="tree" type="Node2D"]
+script = ExtResource("1_6gunx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j3hp8")
+animation = &"full"
+
+[node name="detect" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect"]
+shape = SubResource("CircleShape2D_d5dea")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(17, 23)
+
+[connection signal="body_entered" from="detect" to="." method="_on_detect_body_entered"]
+[connection signal="body_exited" from="detect" to="." method="_on_detect_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
