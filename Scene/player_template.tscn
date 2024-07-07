@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c4mebcxtcxt04"]
+[gd_scene load_steps=55 format=3 uid="uid://c4mebcxtcxt04"]
 
 [ext_resource type="Script" path="res://Scripts/player_handler.gd" id="1_qfonf"]
 [ext_resource type="Texture2D" uid="uid://ceoakbg3hvflh" path="res://assets/characters/player.png" id="2_islho"]
@@ -279,7 +279,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p1eih")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_down",
 "speed": 5.0
 }, {
@@ -296,7 +296,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s77lm")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_right",
 "speed": 5.0
 }, {
@@ -313,7 +313,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iiuti")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_up",
 "speed": 5.0
 }, {
@@ -393,14 +393,16 @@ size = Vector2(9, 6)
 [sub_resource type="CircleShape2D" id="CircleShape2D_sna1f"]
 radius = 21.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ik5h"]
+radius = 17.0294
+
 [node name="beta" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_qfonf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_wsgbq")
-animation = &"attack_right"
-frame = 1
+animation = &"attack_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, -1)
@@ -419,3 +421,17 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(1, -5)
 shape = SubResource("CircleShape2D_sna1f")
+disabled = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, -5)
+shape = SubResource("CircleShape2D_1ik5h")
+debug_color = Color(3.36915e-07, 0.236186, 0.280642, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

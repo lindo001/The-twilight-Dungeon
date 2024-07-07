@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dvdc7rvpfsvnk"]
+[gd_scene load_steps=24 format=3 uid="uid://dvdc7rvpfsvnk"]
 
 [ext_resource type="Texture2D" uid="uid://b1d4v8qvb448j" path="res://assets/characters/slime.png" id="1_1ow61"]
 [ext_resource type="Script" path="res://Scripts/slime_mob.gd" id="1_skbuu"]
@@ -142,12 +142,15 @@ radius = 25.02
 [sub_resource type="CircleShape2D" id="CircleShape2D_i176i"]
 radius = 37.0135
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_smqom"]
+radius = 16.0312
+
 [node name="slim" type="CharacterBody2D"]
 script = ExtResource("1_skbuu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wsfx8")
-animation = &"idle"
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jy38k")
@@ -166,6 +169,17 @@ debug_color = Color(0.988614, 0, 0.299996, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="HurtBox" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_smqom")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationTree")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="sight" to="." method="_on_sight_body_exited"]
