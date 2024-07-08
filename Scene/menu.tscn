@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0ufnb2ijmabd"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_7fmxe"]
+[ext_resource type="FontFile" uid="uid://bdufahkoqnhhf" path="res://assets/Fonts/Kenney Mini.ttf" id="1_8i6re"]
+[ext_resource type="FontFile" uid="uid://23w5s68512mp" path="res://assets/Fonts/Kenney Mini Square.ttf" id="2_nh8t8"]
+[ext_resource type="AudioStream" uid="uid://bfpd0upx8dhp8" path="res://assets/music/akrasia-184927.mp3" id="3_d2jm4"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7fmxe")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="divider" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8i6re")
+theme_override_font_sizes/font_size = 61
+text = "The  twilight Dungoen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+offset_left = 490.0
+offset_top = 458.0
+offset_right = 690.0
+offset_bottom = 528.0
+theme_override_fonts/font = ExtResource("2_nh8t8")
+text = "Start"
+flat = true
+
+[node name="Continue" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+offset_left = 762.0
+offset_top = 540.0
+offset_right = 962.0
+offset_bottom = 610.0
+theme_override_fonts/font = ExtResource("2_nh8t8")
+disabled = true
+text = "Continue"
+flat = true
+
+[node name="Exit" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+offset_left = 178.0
+offset_top = 524.0
+offset_right = 378.0
+offset_bottom = 594.0
+theme_override_fonts/font = ExtResource("2_nh8t8")
+text = "Exit
+"
+flat = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_d2jm4")
+autoplay = true
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

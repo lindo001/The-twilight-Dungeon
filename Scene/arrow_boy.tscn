@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2xxxo117t2gl"]
+
+[ext_resource type="Script" path="res://Scripts/arrow_boy.gd" id="1_qu5hv"]
+[ext_resource type="Texture2D" uid="uid://bqcnaf1ciftb1" path="res://assets/survivalgame-player-green.png" id="1_yrk4b"]
+[ext_resource type="FontFile" uid="uid://cjbfg3y03q7tj" path="res://assets/Fonts/Kenney Pixel.ttf" id="3_8yxvl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqtuq"]
+atlas = ExtResource("1_yrk4b")
+region = Rect2(33, 0, 33, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtcd2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqtuq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p6aks"]
+radius = 20.0998
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_47hg0"]
+
+[node name="Area2D2" type="Node2D"]
+script = ExtResource("1_qu5hv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xtcd2")
+animation = &"idle"
+frame_progress = 0.94256
+
+[node name="Label" type="Label" parent="."]
+offset_left = -21.0
+offset_top = -47.0
+offset_right = 19.0
+offset_bottom = -24.0
+theme_override_fonts/font = ExtResource("3_8yxvl")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_p6aks")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_47hg0")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

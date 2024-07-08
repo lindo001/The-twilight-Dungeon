@@ -6,10 +6,20 @@ var direction
 @onready var sprite = $AnimatedSprite2D
 @onready var hit_box = $HitBox/CollisionShape2D
 var isAttacking =false
-
-
+@export var HP:int = 100
+@onready var progress_bar = $ProgressBar
+@onready var restart_game = $restart_game
+var one_shot = false
+func _ready():
+	progress_bar.value = HP
 
 func _physics_process(delta):
+	if HP<1:
+		if one_shot==false:
+			one_shot = true
+			restart_game.start()
+		print(restart_game.time_left)
+		#queue_free()
 	if !isAttacking:
 		velocity = input_handler()
 	if Input.is_action_just_pressed("attack_a"):
@@ -61,3 +71,19 @@ func _on_animated_sprite_2d_animation_finished():
 		print(isAttacking)
 
 		hit_box.disabled = true
+
+func decreseHP(val):
+	HP-=val
+	progress_bar.value = HP
+func _on_hurt_box_area_entered(area):
+	
+	if area.is_in_group("enemy"):
+		if area.name == "stings":
+			HP-=8
+		else:
+			HP-=4
+		progress_bar.value = HP
+
+
+func _on_restart_game_timeout():
+	Transition.change_scene("res://Scene/world.tscn")

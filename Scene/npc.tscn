@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://dc3nmd6vaiif0"]
+[gd_scene load_steps=31 format=3 uid="uid://dc3nmd6vaiif0"]
 
 [ext_resource type="Script" path="res://Scripts/npc.gd" id="1_gm23q"]
 [ext_resource type="Texture2D" uid="uid://ceoakbg3hvflh" path="res://assets/characters/player.png" id="2_le3mv"]
+[ext_resource type="FontFile" uid="uid://cjbfg3y03q7tj" path="res://assets/Fonts/Kenney Pixel.ttf" id="3_dv1we"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fx7qx"]
 
@@ -220,10 +221,11 @@ autostart = true
 
 [node name="Label" type="Label" parent="."]
 visible = false
-offset_left = -13.0
-offset_top = -40.0
-offset_right = 27.0
-offset_bottom = -17.0
+offset_left = -33.0
+offset_top = -68.0
+offset_right = 33.0
+offset_bottom = -45.0
+theme_override_fonts/font = ExtResource("3_dv1we")
 text = "..."
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

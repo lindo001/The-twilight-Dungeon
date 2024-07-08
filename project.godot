@@ -14,6 +14,10 @@ config/name="They Lived"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Transition="*res://Scene/transition.tscn"
+
 [input]
 
 left={

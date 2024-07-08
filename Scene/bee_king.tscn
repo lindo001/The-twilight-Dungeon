@@ -1,0 +1,135 @@
+[gd_scene load_steps=16 format=3 uid="uid://dp4kdgghjc0rp"]
+
+[ext_resource type="Texture2D" uid="uid://cqxh1jsyv80h6" path="res://assets/bosses/lpc-monsters/bee.png" id="1_j10oe"]
+[ext_resource type="Script" path="res://Scripts/bee_king.gd" id="1_rqsq3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5dw5"]
+radius = 8.0
+height = 22.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndfxk"]
+atlas = ExtResource("1_j10oe")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knjvc"]
+atlas = ExtResource("1_j10oe")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imq03"]
+atlas = ExtResource("1_j10oe")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bdvp"]
+atlas = ExtResource("1_j10oe")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lua8"]
+atlas = ExtResource("1_j10oe")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh5a1"]
+atlas = ExtResource("1_j10oe")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsrxf"]
+atlas = ExtResource("1_j10oe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m06nf"]
+atlas = ExtResource("1_j10oe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7nwh"]
+atlas = ExtResource("1_j10oe")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7n2fu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndfxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knjvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imq03")
+}],
+"loop": true,
+"name": &"down",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bdvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lua8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh5a1")
+}],
+"loop": true,
+"name": &"left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsrxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m06nf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7nwh")
+}],
+"loop": true,
+"name": &"up",
+"speed": 8.0
+}]
+
+[sub_resource type="Theme" id="Theme_28kvv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_elfbh"]
+radius = 21.1161
+
+[node name="BeeKing" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_rqsq3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_v5dw5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 3)
+sprite_frames = SubResource("SpriteFrames_7n2fu")
+animation = &"down"
+autoplay = "down"
+frame_progress = 0.738505
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0, 0.886275, 0.0666667, 1)
+self_modulate = Color(0, 0.886275, 0.0666667, 1)
+offset_left = -36.0
+offset_top = -28.3333
+offset_right = 36.0
+offset_bottom = -1.33334
+scale = Vector2(1, 0.373333)
+theme = SubResource("Theme_28kvv")
+theme_override_colors/font_color = Color(0, 0.886275, 0.0666667, 1)
+theme_override_colors/font_outline_color = Color(0, 0.886275, 0.0666667, 1)
+theme_override_font_sizes/font_size = 1
+value = 90.0
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_elfbh")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
