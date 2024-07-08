@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://31aewr2hfgqm"]
+[gd_scene load_steps=19 format=3 uid="uid://31aewr2hfgqm"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_4kd2a"]
 [ext_resource type="PackedScene" uid="uid://c4mebcxtcxt04" path="res://Scene/player_template.tscn" id="1_w7d10"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ur5c2vw3kpj5" path="res://assets/survivalgame-appletree.png" id="4_udx1a"]
 [ext_resource type="Texture2D" uid="uid://blbfyi501kt2k" path="res://assets/survivalgame-terrian-cliffs.png" id="5_syx88"]
 [ext_resource type="Texture2D" uid="uid://cgw4lqhhscgmi" path="res://assets/survivalgame-terrian-defult.png" id="6_mmna1"]
+[ext_resource type="PackedScene" uid="uid://dvdc7rvpfsvnk" path="res://Scene/slime.tscn" id="11_k3q3x"]
 [ext_resource type="PackedScene" uid="uid://dc3nmd6vaiif0" path="res://Scene/npc.tscn" id="11_xrhqx"]
 [ext_resource type="PackedScene" uid="uid://xjr6xvd8dsgp" path="res://Scene/stand.tscn" id="12_khkbb"]
 [ext_resource type="PackedScene" uid="uid://b2xxxo117t2gl" path="res://Scene/arrow_boy.tscn" id="13_i3bqw"]
@@ -848,5 +849,19 @@ position = Vector2(1060, 175)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(38, -9, 455, -14, 455, 90, 254, 85, 254, 191, 289, 189, 349, 239, 393, 278, 430, 239, 442, 279, 554, 279, 552, 152, 744, 152, 766, 131, 775, 194, 872, 199, 896, 90, 908, 48, 1110, 35, 1130, 111, 1154, 115, 1143, 172, 1094, 171, 1079, 202, 923, 206, 906, 241, 610, 251, 618, 499, 1066, 503, 1150, 503, 1158, 583, 738, 575, 738, 607, 667, 611, 667, 570, 585, 567, 558, 471, 510, 463, 518, 391, 554, 391, 562, 315, 282, 323, 281, 346, -14, 351, -10, 651, 1210, 651, 1190, -29, -46, -57, -54, 7)
+
+[node name="Slimes" type="Node2D" parent="."]
+
+[node name="slim" parent="Slimes" node_paths=PackedStringArray("target") instance=ExtResource("11_k3q3x")]
+position = Vector2(614, 524)
+target = NodePath("../../beta")
+
+[node name="slim2" parent="Slimes" node_paths=PackedStringArray("target") instance=ExtResource("11_k3q3x")]
+position = Vector2(712, 198)
+target = NodePath("../../NPC")
+
+[node name="slim3" parent="Slimes" node_paths=PackedStringArray("target") instance=ExtResource("11_k3q3x")]
+position = Vector2(296, 280)
+target = NodePath("../../beta")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
