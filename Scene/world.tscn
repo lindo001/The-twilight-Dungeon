@@ -814,7 +814,7 @@ script = ExtResource("1_4kd2a")
 
 [node name="beta" parent="." instance=ExtResource("1_w7d10")]
 z_index = 1
-position = Vector2(61, 75)
+position = Vector2(85, 108)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_qv063")

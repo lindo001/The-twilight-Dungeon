@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://xjr6xvd8dsgp"]
+[gd_scene load_steps=10 format=3 uid="uid://xjr6xvd8dsgp"]
 
-[ext_resource type="Texture2D" uid="uid://ceoakbg3hvflh" path="res://assets/characters/player.png" id="1_0i3uo"]
 [ext_resource type="Texture2D" uid="uid://d16kcphf3gusp" path="res://assets/farmingTilesheetComplete.png" id="1_1df1p"]
 [ext_resource type="Script" path="res://Scripts/stand.gd" id="1_li5ps"]
 [ext_resource type="FontFile" uid="uid://cjbfg3y03q7tj" path="res://assets/Fonts/Kenney Pixel.ttf" id="4_cdiau"]
+[ext_resource type="Texture2D" uid="uid://dugbc4m68uw3c" path="res://assets/addition/olld_man_0001.png" id="4_f0nqt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eblv"]
 atlas = ExtResource("1_1df1p")
@@ -21,27 +21,24 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2hfm"]
-size = Vector2(71, 39)
+size = Vector2(78, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j3a6x"]
-size = Vector2(54, 44)
+size = Vector2(61, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epvqw"]
+size = Vector2(56, 30)
 
 [node name="Stand" type="Node2D"]
 script = ExtResource("1_li5ps")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -22)
-texture = ExtResource("1_0i3uo")
-hframes = 6
-vframes = 9
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(1, -34)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_revs0")
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_left = -71.0
 offset_top = -101.0
 offset_right = 75.0
@@ -55,14 +52,25 @@ autowrap_mode = 3
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-3.5, 9.5)
+position = Vector2(0, 12.5)
 shape = SubResource("RectangleShape2D_i2hfm")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-1, -22)
+z_index = -1
+position = Vector2(-0.5, -20.5)
 shape = SubResource("RectangleShape2D_j3a6x")
+
+[node name="OlldMan0001" type="Sprite2D" parent="."]
+position = Vector2(1, -24)
+texture = ExtResource("4_f0nqt")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(2, 5)
+shape = SubResource("RectangleShape2D_epvqw")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

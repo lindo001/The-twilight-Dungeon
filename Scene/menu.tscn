@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0ufnb2ijmabd"]
+[gd_scene load_steps=6 format=3 uid="uid://b0ufnb2ijmabd"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_7fmxe"]
 [ext_resource type="FontFile" uid="uid://bdufahkoqnhhf" path="res://assets/Fonts/Kenney Mini.ttf" id="1_8i6re"]
+[ext_resource type="Texture2D" uid="uid://c3c2opvqdwanm" path="res://assets/addition/pin.png" id="2_4hywt"]
 [ext_resource type="FontFile" uid="uid://23w5s68512mp" path="res://assets/Fonts/Kenney Mini Square.ttf" id="2_nh8t8"]
 [ext_resource type="AudioStream" uid="uid://bfpd0upx8dhp8" path="res://assets/music/akrasia-184927.mp3" id="3_d2jm4"]
 
@@ -21,6 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_4hywt")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -58,7 +60,6 @@ offset_right = 690.0
 offset_bottom = 528.0
 theme_override_fonts/font = ExtResource("2_nh8t8")
 text = "Start"
-flat = true
 
 [node name="Continue" type="Button" parent="."]
 custom_minimum_size = Vector2(200, 70)
@@ -82,7 +83,6 @@ offset_bottom = 594.0
 theme_override_fonts/font = ExtResource("2_nh8t8")
 text = "Exit
 "
-flat = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_d2jm4")
