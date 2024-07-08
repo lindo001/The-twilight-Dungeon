@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://31aewr2hfgqm"]
+[gd_scene load_steps=18 format=3 uid="uid://31aewr2hfgqm"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_4kd2a"]
 [ext_resource type="PackedScene" uid="uid://c4mebcxtcxt04" path="res://Scene/player_template.tscn" id="1_w7d10"]
@@ -7,11 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://ur5c2vw3kpj5" path="res://assets/survivalgame-appletree.png" id="4_udx1a"]
 [ext_resource type="Texture2D" uid="uid://blbfyi501kt2k" path="res://assets/survivalgame-terrian-cliffs.png" id="5_syx88"]
 [ext_resource type="Texture2D" uid="uid://cgw4lqhhscgmi" path="res://assets/survivalgame-terrian-defult.png" id="6_mmna1"]
-[ext_resource type="PackedScene" uid="uid://dvdc7rvpfsvnk" path="res://Scene/slime.tscn" id="7_vpp07"]
 [ext_resource type="PackedScene" uid="uid://dc3nmd6vaiif0" path="res://Scene/npc.tscn" id="11_xrhqx"]
 [ext_resource type="PackedScene" uid="uid://xjr6xvd8dsgp" path="res://Scene/stand.tscn" id="12_khkbb"]
 [ext_resource type="PackedScene" uid="uid://b2xxxo117t2gl" path="res://Scene/arrow_boy.tscn" id="13_i3bqw"]
-[ext_resource type="AudioStream" uid="uid://cmoeuqf6gu6nt" path="res://assets/music/time_for_adventure.mp3" id="14_igftc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dhq7r"]
 texture = ExtResource("2_r4pp5")
@@ -845,29 +843,6 @@ position = Vector2(947, 115)
 
 [node name="Area2D2" parent="." instance=ExtResource("13_i3bqw")]
 position = Vector2(1060, 175)
-
-[node name="Slimss" type="Node2D" parent="."]
-
-[node name="slim" parent="Slimss" node_paths=PackedStringArray("target") instance=ExtResource("7_vpp07")]
-position = Vector2(832, 216)
-target = NodePath("../../beta")
-
-[node name="slim2" parent="Slimss" node_paths=PackedStringArray("target") instance=ExtResource("7_vpp07")]
-position = Vector2(582, 372)
-target = NodePath("../../beta")
-
-[node name="slim3" parent="Slimss" node_paths=PackedStringArray("target") instance=ExtResource("7_vpp07")]
-position = Vector2(339, 286)
-target = NodePath("../../beta")
-
-[node name="slim4" parent="Slimss" node_paths=PackedStringArray("target") instance=ExtResource("7_vpp07")]
-position = Vector2(802, 536)
-target = NodePath("../../beta")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-26, 210)
-stream = ExtResource("14_igftc")
-autoplay = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
