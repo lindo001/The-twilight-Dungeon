@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://31aewr2hfgqm"]
+[gd_scene load_steps=20 format=3 uid="uid://31aewr2hfgqm"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_4kd2a"]
 [ext_resource type="PackedScene" uid="uid://c4mebcxtcxt04" path="res://Scene/player_template.tscn" id="1_w7d10"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cgw4lqhhscgmi" path="res://assets/survivalgame-terrian-defult.png" id="6_mmna1"]
 [ext_resource type="PackedScene" uid="uid://dvdc7rvpfsvnk" path="res://Scene/slime.tscn" id="11_k3q3x"]
 [ext_resource type="PackedScene" uid="uid://dc3nmd6vaiif0" path="res://Scene/npc.tscn" id="11_xrhqx"]
+[ext_resource type="AudioStream" uid="uid://cmoeuqf6gu6nt" path="res://assets/music/time_for_adventure.mp3" id="12_7qny1"]
 [ext_resource type="PackedScene" uid="uid://xjr6xvd8dsgp" path="res://Scene/stand.tscn" id="12_khkbb"]
 [ext_resource type="PackedScene" uid="uid://b2xxxo117t2gl" path="res://Scene/arrow_boy.tscn" id="13_i3bqw"]
 
@@ -863,5 +864,9 @@ target = NodePath("../../NPC")
 [node name="slim3" parent="Slimes" node_paths=PackedStringArray("target") instance=ExtResource("11_k3q3x")]
 position = Vector2(296, 280)
 target = NodePath("../../beta")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_7qny1")
+autoplay = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
