@@ -4,7 +4,7 @@ This is an experiment aimed at familiarizing myself with using the Godot Engine,
 
 
 # TODO
-  - [] Code cleanup
+  - Code cleanup
   - Sprites need updating
   - better control handling
   - More movesets
